@@ -3,56 +3,94 @@
 {{outlet}}
 
 //k-autocomplete
-{{#k-autocomplete}}
-  <h2>k-autocomplete</h2>
-{{/k-autocomplete}}
+{{k-autocomplete
+  dataSource=dataSource
+  dataTextField='title'
+  value=autocomplete
+}}
+
+{{log 'autocomplete: ' autocomplete}}
 
 //k-colorpicker
-{{#k-colorpicker}}
-  <h2>k-colorpicker</h2>
-{{/k-colorpicker}}
+{{k-colorpicker
+  palette='basic'
+  tileSize=32
+  buttons=false
+  value=colorpicker
+}}
+
+{{log 'colorpicker: ' colorpicker}}
 
 //k-combobox
-{{#k-combobox}}
-  <h2>k-combobox</h2>
-{{/k-combobox}}
+{{k-combobox
+  dataSource=dataSource
+  dataTextField='title'
+  value=combobox
+}}
+
+{{log 'combobox: ' combobox}}
 
 //k-datepicker
-{{#k-datepicker}}
-  <h2>k-datepicker</h2>
-{{/k-datepicker}}
+{{k-datepicker
+  value=datepicker
+}}
+
+{{log 'datepicker: ' datepicker}}
 
 //k-datetimepicker
-{{#k-datetimepicker}}
-  <h2>k-datetimepicker</h2>
-{{/k-datetimepicker}}
+{{k-datetimepicker
+  value=datetimepicker
+}}
+
+{{log 'datetimepicker: ' datetimepicker}}
 
 //k-dropdownlist
-{{#k-dropdownlist}}
-  <h2>k-dropdownlist</h2>
-{{/k-dropdownlist}}
+{{k-dropdownlist
+  dataSource=dataSource
+  dataTextField='title'
+  value=dropdownlist
+}}
+
+{{log 'dropdownlist: ' dropdownlist}}
 
 //k-maskedtextbox
-{{#k-maskedtextbox}}
-  <h2>k-maskedtextbox</h2>
-{{/k-maskedtextbox}}
+{{k-maskedtextbox
+  mask="000000"
+  value=maskedtextbox
+}}
+
+{{log 'maskedtextbox: ' maskedtextbox}}
 
 //k-multiselect
-{{#k-multiselect}}
-  <h2>k-multiselect</h2>
-{{/k-multiselect}}
+{{k-multiselect
+  dataSource=dataSource
+  dataTextField='title'
+  value=multiselect
+}}
+
+{{log 'multiselect: ' multiselect}}
 
 //k-numerictextbox
-{{#k-numerictextbox}}
-  <h2>k-numerictextbox</h2>
-{{/k-numerictextbox}}
+{{k-numerictextbox
+  value=numerictextbox
+}}
+
+{{log 'numerictextbox: ' numerictextbox}}
 
 //k-slider
-{{#k-slider}}
-  <h2>k-slider</h2>
-{{/k-slider}}
+{{k-slider
+  smallStep='0.01'
+  largeStep='0.01'
+  min='0.00'
+  max='40.00'
+  value=slider
+}}
+
+{{log 'slider: ' slider}}
 
 //k-timepicker
-{{#k-timepicker}}
-  <h2>k-timepicker</h2>
-{{/k-timepicker}}
+{{k-timepicker
+  value=timepicker
+}}
+
+{{log 'timepicker: ' timepicker}}
