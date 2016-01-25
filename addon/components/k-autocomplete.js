@@ -38,7 +38,7 @@ export default Ember.Component.extend(DataSource, Options, Value, {
     'select'
   ],
   willInsertElement() {
-    let $object = this.$('select')
+    let $object = this.$('input')
       .kendoAutoComplete(this.get('options'))
       .data('kendoAutoComplete');
     this.set('$object', $object);
