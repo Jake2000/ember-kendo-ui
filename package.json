@@ -11,7 +11,10 @@
     "start": "ember server",
     "test": "ember try:testall"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jake2000/ember-kendo-ui.git"
+  },
   "engines": {
     "node": ">= 0.10.0"
   },

@@ -45,7 +45,7 @@ export default Ember.Component.extend(DataSource, Options, Value, {
     'cascade'
   ],
   willInsertElement() {
-    let $object = this.$('input')
+    let $object = this.$('select')
       .kendoComboBox(this.get('options'))
       .data('kendoComboBox');
     this.set('$object', $object);
