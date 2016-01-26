@@ -2,9 +2,9 @@ import Ember from 'ember';
 import layout from '../templates/components/k-datepicker';
 
 import Options from '../mixins/options';
-import {onChange} from '../mixins/value';
+import {onChange, value} from '../mixins/value';
 
-export default Ember.Component.extend(Options, onChange, {
+export default Ember.Component.extend(Options, onChange, value, {
   layout: layout,
   _keys: [
     //configuration

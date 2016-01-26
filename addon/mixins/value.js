@@ -45,4 +45,4 @@ let value = Mixin.create({
 
 export {onChange, onDataBound, onSelect, value};
 
-export default Ember.Mixin.create(onChange, onDataBound, onSelect, value);
+export default Mixin.create(onChange, onDataBound, onSelect, value);

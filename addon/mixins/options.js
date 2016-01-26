@@ -1,12 +1,13 @@
 import Ember from 'ember';
+const {Mixin, on, isEmpty} = Ember;
 import Serialize from './serialize';
 
-export default Ember.Mixin.create(Serialize, {
-  _options: Ember.on('init', function() {
+export default Mixin.create(Serialize, {
+  _options: on('init', function() {
     let options = this.get('options') || {};
     this._keys.forEach(key => {
       let value = this._serialize(this.get(key));
-      if(!Ember.isEmpty(value)) {
+      if(!isEmpty(value)) {
         options[key] = value;
       }
     });

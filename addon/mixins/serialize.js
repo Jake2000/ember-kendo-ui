@@ -1,8 +1,9 @@
 import Ember from 'ember';
+const {Mixin, typeOf} = Ember;
 
-export default Ember.Mixin.create({
+export default Mixin.create({
   _serialize(property) {
-    let type = Ember.typeOf(property);
+    let type = typeOf(property);
     switch(type) {
       //serialize Ember.Object.create(<object>) to Object
       case 'instance':
