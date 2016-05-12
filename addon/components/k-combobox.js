@@ -2,10 +2,11 @@ import Ember from 'ember';
 import layout from '../templates/components/k-combobox';
 
 import Options from '../mixins/options';
+import Events from '../mixins/events';
 import DataSource from '../mixins/datasource';
 import Value from '../mixins/value';
 
-export default Ember.Component.extend(DataSource, Options, Value, {
+export default Ember.Component.extend(DataSource, Options, Events, Value, {
   layout: layout,
   _keys: [
     //configuration

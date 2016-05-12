@@ -12,6 +12,17 @@ let onChange = Mixin.create({
   })
 });
 
+let onSpin = Mixin.create({
+  _onSpin: observer('$object', function() {
+    let $object = this.get('$object');
+    if(!isEmpty($object)) {
+      $object.bind('spin', () => {
+        this.set('value', $object.value());
+      });
+    }
+  })
+});
+
 let onDataBound = Mixin.create({
   _onDataBound: observer('$object', function() {
     let $object = this.get('$object');
@@ -43,6 +54,6 @@ let value = Mixin.create({
   })
 });
 
-export {onChange, onDataBound, onSelect, value};
+export {onChange, onSpin, onDataBound, onSelect, value};
 
-export default Mixin.create(onChange, onDataBound, onSelect, value);
+export default Mixin.create(onChange, onSpin, onDataBound, onSelect, value);

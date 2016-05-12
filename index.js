@@ -8,6 +8,7 @@ module.exports = {
 
     app.import(app.bowerDirectory + '/kendo-ui/js/kendo.core.min.js');
     app.import(app.bowerDirectory + '/kendo-ui/js/kendo.data.min.js');
+    app.import(app.bowerDirectory + '/kendo-ui/js/kendo.binder.min.js');
     app.import(app.bowerDirectory + '/kendo-ui/js/kendo.popup.min.js');
     app.import(app.bowerDirectory + '/kendo-ui/js/kendo.list.min.js');
     app.import(app.bowerDirectory + '/kendo-ui/js/kendo.fx.min.js');
