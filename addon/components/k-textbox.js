@@ -5,7 +5,7 @@ const { TextField } = Ember;
 export default TextField.extend(Events, {
     layout,
     classNames: ['k-textbox'],
-    didInsertElement() {
+    willInsertElement() {
         let $object = {
             element: this.$()
         };

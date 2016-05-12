@@ -30,7 +30,7 @@ export default Component.extend(Options, Events, value, onSpin, onChange, {
         $object.value($object.element.val());
         this.set('value', $object.value());
     },
-    didInsertElement() {
+    willInsertElement() {
         let $object = this.$('input')
                 .kendoNumericTextBox(this.get('options'))
                 .data('kendoNumericTextBox');
