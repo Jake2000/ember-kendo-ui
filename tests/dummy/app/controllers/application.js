@@ -14,5 +14,6 @@ export default Ember.Controller.extend({
     Ember.Object.create({
       title: 'value4'
     })
-  ])
+   ]),
+   value: 'value1'
 });

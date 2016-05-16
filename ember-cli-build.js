@@ -14,5 +14,11 @@ module.exports = function(defaults) {
     behave. You most likely want to be modifying `./index.js` or app's build file
   */
 
+  app.import('bower_components/kendo-ui/styles/kendo.common-material.core.min.css');
+  app.import('bower_components/kendo-ui/styles/kendo.common-material.min.css');
+  app.import('bower_components/kendo-ui/styles/kendo.material.min.css');
+
+  app.import('bower_components/kendo-ui/src/js/cultures/kendo.culture.ru-RU.js');
+
   return app.toTree();
 };

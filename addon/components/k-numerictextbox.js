@@ -1,13 +1,8 @@
-import Ember from 'ember';
-import layout from '../templates/components/k-numerictextbox';
-import Options from '../mixins/options';
-import Events from '../mixins/events';
 import { onChange, onSpin, value } from '../mixins/value';
+import Events from '../mixins/events';
+import BaseComponent from './base-component';
 
-const { Component, $ } = Ember;
-
-export default Component.extend(Options, Events, value, onSpin, onChange, {
-    layout,
+export default BaseComponent.extend(value, onSpin, onChange, Events, {
     _keys: [
         //configuration
         'culture',
@@ -30,11 +25,9 @@ export default Component.extend(Options, Events, value, onSpin, onChange, {
         $object.value($object.element.val());
         this.set('value', $object.value());
     },
-    willInsertElement() {
-        let $object = this.$('input')
-                .kendoNumericTextBox(this.get('options'))
-                .data('kendoNumericTextBox');
-        this.set('$object', $object);
-        this.sendAction('action', $object);
+    _initialize(options) {
+        return this.$('input')
+            .kendoNumericTextBox(options || {})
+            .data('kendoNumericTextBox');
     }
 });

@@ -1,55 +1,48 @@
-import Ember from 'ember';
-import layout from '../templates/components/k-dropdownlist';
-
-import Options from '../mixins/options';
-import Events from '../mixins/events';
-import DataSource from '../mixins/datasource';
 import Value from '../mixins/value';
+import Events from '../mixins/events';
+import BaseComponent from './base-component';
 
-export default Ember.Component.extend(DataSource, Options, Events, Value, {
-  layout: layout,
-  _keys: [
-    //configuration
-    'animation',
-    'autoBind',
-    'cascadeFrom',
-    'cascadeFromField',
-    'dataSource',
-    'dataTextField',
-    'dataValueField',
-    'delay',
-    'enable',
-    'filter',
-    'fixedGroupTemplate',
-    'groupTemplate',
-    'height',
-    'ignoreCase',
-    'index',
-    'minLength',
-    'popup',
-    'optionLabel',
-    'optionLabelTemplate',
-    'headerTemplate',
-    'template',
-    'valueTemplate',
-    'text',
-    'vaue',
-    'valuePrimitive',
-    'virtual',
-    //events
-    'change',
-    'close',
-    'dataBound',
-    'filtering',
-    'open',
-    'select',
-    'cascade'
-  ],
-  willInsertElement() {
-    let $object = this.$('select')
-      .kendoDropDownList(this.get('options'))
-      .data('kendoDropDownList');
-    this.set('$object', $object);
-    this.sendAction('action', $object);
-  }
+export default BaseComponent.extend(Value, Events, {
+    _keys: [
+        //configuration
+        'animation',
+        'autoBind',
+        'cascadeFrom',
+        'cascadeFromField',
+        'dataSource',
+        'dataTextField',
+        'dataValueField',
+        'delay',
+        'enable',
+        'filter',
+        'fixedGroupTemplate',
+        'groupTemplate',
+        'height',
+        'ignoreCase',
+        'index',
+        'minLength',
+        'popup',
+        'optionLabel',
+        'optionLabelTemplate',
+        'headerTemplate',
+        'template',
+        'valueTemplate',
+        'text',
+        'vaue',
+        'valuePrimitive',
+        'virtual',
+        //events
+        'change',
+        'close',
+        'dataBound',
+        'filtering',
+        'open',
+        'select',
+        'cascade'
+    ],
+    _initialize(options) {
+        return this.$('select')
+            .kendoDropDownList(options || {})
+            .data('kendoDropDownList');
+    }
 });

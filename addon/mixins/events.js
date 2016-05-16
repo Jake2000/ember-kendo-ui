@@ -1,5 +1,5 @@
 import Ember from 'ember';
-const { Mixin, String: { dasherize }, observer, typeOf, isEmpty } = Ember;
+const { Mixin, String: { dasherize }, typeOf, isEmpty } = Ember;
 
 export default Mixin.create({
     _events: [
@@ -31,7 +31,8 @@ export default Mixin.create({
         'onTouchCancel',
         'onSubmit'
     ],
-    _setEvents: observer('$object', function() {
+    didInsertElement() {
+        this._super();
         let $object = this.get('$object');
         if(!isEmpty($object)) {
             this._events.forEach(e => {
@@ -44,5 +45,5 @@ export default Mixin.create({
                 }
             });
         }
-    })
+    }
 });

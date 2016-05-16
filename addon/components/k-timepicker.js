@@ -1,33 +1,27 @@
-import Ember from 'ember';
-import layout from '../templates/components/k-timepicker';
-
-import Options from '../mixins/options';
+import { onChange, value } from '../mixins/value';
 import Events from '../mixins/events';
-import {onChange, value} from '../mixins/value';
+import BaseComponent from './base-component';
 
-export default Ember.Component.extend(Options, onChange, Events, value, {
-  layout: layout,
-  _keys: [
-    //configuration
-    'animation',
-    'culture',
-    'dates',
-    'format',
-    'interval',
-    'max',
-    'min',
-    'parseFormats',
-    'value',
-    //events
-    'change',
-    'close',
-    'open'
-  ],
-  willInsertElement() {
-    let $object = this.$('input')
-      .kendoTimePicker(this.get('options'))
-      .data('kendoTimePicker');
-    this.set('$object', $object);
-    this.sendAction('action', $object);
-  }
+export default BaseComponent.extend(onChange, value, Events, {
+    _keys: [
+        //configuration
+        'animation',
+        'culture',
+        'dates',
+        'format',
+        'interval',
+        'max',
+        'min',
+        'parseFormats',
+        'value',
+        //events
+        'change',
+        'close',
+        'open'
+    ],
+    _initialize(options) {
+        return this.$('input')
+            .kendoTimePicker(options || {})
+            .data('kendoTimePicker');
+    }
 });

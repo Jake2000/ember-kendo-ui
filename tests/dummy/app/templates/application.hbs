@@ -1,11 +1,10 @@
 <h2 id="title">Welcome to Ember</h2>
 
-{{outlet}}
-
 //k-autocomplete
 {{k-autocomplete
   dataSource=dataSource
   dataTextField='title'
+  dataValueField='title'
   value=autocomplete
 }}
 
@@ -25,10 +24,11 @@
 {{k-combobox
   dataSource=dataSource
   dataTextField='title'
-  value=combobox
+  dataValueField='title'
+  value=value
 }}
 
-{{log 'combobox: ' combobox}}
+{{log 'combobox: ' value}}
 
 //k-datepicker
 {{k-datepicker
@@ -48,6 +48,7 @@
 {{k-dropdownlist
   dataSource=dataSource
   dataTextField='title'
+  dataValueField='title'
   value=dropdownlist
 }}
 
@@ -65,10 +66,12 @@
 {{k-multiselect
   dataSource=dataSource
   dataTextField='title'
+  dataValueField='title'
   value=multiselect
 }}
 
 {{log 'multiselect: ' multiselect}}
+
 
 //k-numerictextbox
 {{k-numerictextbox
