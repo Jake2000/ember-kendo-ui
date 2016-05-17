@@ -1,8 +1,7 @@
 import { onChange, value } from '../mixins/value';
-import Events from '../mixins/events';
 import BaseComponent from './base-component';
 
-export default BaseComponent.extend(onChange, value, Events, {
+export default BaseComponent.extend(onChange, value, {
     _keys: [
         //configuration
         'buttons',

@@ -1,8 +1,7 @@
 import { onChange, onSpin, value } from '../mixins/value';
-import Events from '../mixins/events';
 import BaseComponent from './base-component';
 
-export default BaseComponent.extend(value, onSpin, onChange, Events, {
+export default BaseComponent.extend(value, onSpin, onChange, {
     _keys: [
         //configuration
         'culture',

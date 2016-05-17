@@ -8,6 +8,7 @@ export default TextField.extend(Events, {
             element: this.$()
         };
         this.set('$object', $object);
+        this._setEvents();
         this.sendAction('action', $object);
     }
 });

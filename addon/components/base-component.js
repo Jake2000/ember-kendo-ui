@@ -1,58 +1,15 @@
 import Ember from 'ember';
+import Events from '../mixins/events';
+import { isPromise, serialize } from '../utils';
+const { Component, isEmpty, RSVP: { Promise }, assign, A } = Ember;
 
-const { Component, typeOf, isEmpty, RSVP: { Promise }, assign, A } = Ember;
-
-export default Component.extend({
-    _parse(property) {
-        return JSON.parse(JSON.stringify(property));
-    },
-    _isFunction(property) {
-        return typeOf(property) === 'function';
-    },
-    _isInstance(property) {
-        return typeOf(property) === 'instance';
-    },
-    _isPromise(property) {
-        return this._isInstance(property) && this._isFunction(property.then);
-    },
-    _toObject(property) {
-        let id = null;
-        if(this._isInstance(property)) {
-            id = property.get('id');
-            let content = property.get('content');
-            if(!isEmpty(content)) {
-                property = content;
-            }
-        }
-        property = property || {};
-        let content = this._parse(property);
-        if(!isEmpty(id)) {
-            content['id'] = id;
-        }
-        return content;
-    },
-    _serialize(property) {
-        let type = typeOf(property);
-        switch(type) {
-            case 'instance':
-                property = this._toObject(property);
-            break;
-            case 'array':
-                let array = [];
-                property.forEach(value => {
-                    array.push(this._serialize(value));
-                });
-                property = array;
-            break;
-        }
-        return property;
-    },
+export default Component.extend(Events, {
     _options() {
         let {
-            dataSource, _keys
+            dataSource, _keys: keys
         } = this.getProperties('dataSource', '_keys');
         dataSource = new Promise((resolve, reject) => {
-            if(this._isPromise(dataSource)) {
+            if(isPromise(dataSource)) {
                 dataSource.then(dataSource => {
                     dataSource = dataSource.toArray();
                     dataSource.map((d, i) => {
@@ -67,15 +24,16 @@ export default Component.extend({
                     reject({ dataSource: [] });
                 });
             } else {
-                resolve({ dataSource: this._serialize(dataSource) });
+                resolve({ dataSource: serialize(dataSource) });
             }
         });
-        let keys = A(_keys), options = {};
+        let options = {};
+        keys = A(keys);
         if(keys.contains('dataSource')) {
             keys.removeObject('dataSource');
         }
         keys.forEach(key => {
-            let value = this._serialize(this.get(key));
+            let value = serialize(this.get(key));
             if(!isEmpty(value)) {
                 options[key] = value;
             }
@@ -87,10 +45,11 @@ export default Component.extend({
     },
     willInsertElement() {
         this._options().then(results => {
-            let [ first, second ] = results;
-            let options = this._serialize(assign(first, second));
-            let $object = this._initialize(options);
+            let [ first, second ] = results,
+                options = serialize(assign(first, second)),
+                $object = this._initialize(options);
             this.set('$object', $object);
+            this._setEvents();
             this.sendAction('action', $object);
         });
     }

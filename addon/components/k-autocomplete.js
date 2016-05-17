@@ -1,8 +1,7 @@
 import Value from '../mixins/value';
-import Events from '../mixins/events';
 import BaseComponent from './base-component';
 
-export default BaseComponent.extend(Value, Events, {
+export default BaseComponent.extend(Value, {
     _keys: [
         //configuration
         'animation',

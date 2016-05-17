@@ -1,5 +1,6 @@
 import Ember from 'ember';
-const { Mixin, String: { dasherize }, typeOf, isEmpty } = Ember;
+import { isFunction } from '../utils';
+const { Mixin, String: { dasherize }, isEmpty } = Ember;
 
 export default Mixin.create({
     _events: [
@@ -31,13 +32,12 @@ export default Mixin.create({
         'onTouchCancel',
         'onSubmit'
     ],
-    didInsertElement() {
-        this._super();
+    _setEvents() {
         let $object = this.get('$object');
         if(!isEmpty($object)) {
             this._events.forEach(e => {
                 let fn = this.get(e);
-                if(typeOf(fn) === 'function') {
+                if(isFunction(fn)) {
                     e = dasherize(e.substring(2)).replace('-', '');
                     $object.element.on(e, e => {
                         fn.call(this, e);
